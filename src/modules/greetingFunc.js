@@ -6,3 +6,5 @@ const greetingFunction = () => {
 
   console.log(`Welcome to the File Manager, ${username || 'Username'}!`);
 }
+
+export { greetingFunction };
