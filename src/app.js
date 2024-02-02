@@ -6,6 +6,7 @@ const username = getUserName();
 greetingFunction();
 
 const exitFileManager = () => {
+  printCurrentWorkingDirectory();
   console.log(`Thank you for using File Manager, ${username}, goodbye!`);
   rl.close();
 };
@@ -24,3 +25,10 @@ rl.on("line", (message) => {
     exitFileManager();
   }
 });
+
+const printCurrentWorkingDirectory = () => {
+  const currentWorkingDirectory = process.cwd();
+  console.log(`You are currently in: ${currentWorkingDirectory}`);
+};
+
+printCurrentWorkingDirectory();
