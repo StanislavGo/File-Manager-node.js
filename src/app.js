@@ -5,19 +5,22 @@ const username = getUserName();
 
 greetingFunction();
 
+const exitFileManager = () => {
+  console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+  rl.close();
+};
+
 const rl = createInterface({
   input: process.stdin,
   output: process.stdout
 });
 
 rl.on("SIGINT", () => {
-  console.log(`Thank you for using File Manager, ${username}, goodbye!`);
-  rl.close();
+  exitFileManager();
 });
 
 rl.on("line", (message) => {
   if (message === ".exit") {
-    console.log(`Thank you for using File Manager, ${username}, goodbye!`);
-    rl.close();
+    exitFileManager();
   }
 });
