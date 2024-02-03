@@ -2,10 +2,11 @@ import { getUserName } from "./modules/getUserName.js";
 import { greetingFunction } from "./modules/greetingFunc.js";
 import { createInterface } from "readline";
 import { checkCommand } from "./modules/checkCommandForExistance.js";
-import fs from "fs";
+import { printListOffiles } from "./modules/printListOfFilles.js";
+import { navigateToDirrectory } from "./modules/navigateToDirrectory.js";
 import os from "os";
-const username = getUserName();
 
+const username = getUserName();
 greetingFunction();
 
 const exitFileManager = () => {
@@ -23,33 +24,22 @@ rl.on("SIGINT", () => {
 });
 
 const userHomeDirectory = os.homedir();
+const currentDirectory = userHomeDirectory;
 
 const getUserHomeDirectory = () => {
   console.log(`You are currently in: ${userHomeDirectory}`);
 };
 
-const pringListOffiles = (pathToFile) => {
-  const arrOfFiles = fs.readdirSync(pathToFile);
-  const tableData = [];
-
-  arrOfFiles.forEach((item) => {
-    const itemPath = `${pathToFile}/${item}`;
-    const stats = fs.statSync(itemPath);
-    const fileType = (`${stats.isDirectory() ? 'directory' : 'file'}`);
-
-    tableData.push({ name: item, type: fileType });
-  });
-
-  console.table(tableData);
-}
-
 rl.on("line", (command) => {
-  checkCommand(command);
   getUserHomeDirectory();
   if (command === ".exit") {
     exitFileManager();
   } else if (command === "ls") {
-    pringListOffiles(userHomeDirectory);
+    printListOffiles(userHomeDirectory);
+  } else if (command.startsWith("cd")) {
+    navigateToDirrectory(command, currentDirectory);
+  } else {
+    checkCommand(command);
   }
 });
 
