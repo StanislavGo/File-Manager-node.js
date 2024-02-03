@@ -1,10 +1,10 @@
 const arrOfAllComands = [".exit", "ls"];
 
 const checkCommand = (comand) => {
-  for(let i = 0; i < arrOfAllComands.length; i++) {
-    if (comand != arrOfAllComands[i]) {
-      console.log("Invalid input");
-    }
+  const arrayInclues = arrOfAllComands.includes(comand);
+
+  if (arrayInclues === false) {
+    console.log("Invalid input");
   }
 }
 
