@@ -9,7 +9,7 @@ const navigateToDirrectory = (pathToFile, currentDirectory) => {
 
   if (currentDirectory == userHomeDirectory[0]) {
     changeCurrentPath(userHomeDirectory[0]);
-  } else if (pathWithoutCd.startsWith("..")) {
+  } else if (pathWithoutCd.startsWith("..") || pathToFile == "up") {
     partsOfPath.pop();
     const fileToGo = pathWithoutCd.replace("../", "").split(/[\\/]/);
     partsOfPath.concat(fileToGo);

@@ -41,6 +41,8 @@ rl.on("line", (command) => {
     printListOffiles(currentDirectory);
   } else if (command.startsWith("cd")) {
     navigateToDirrectory(command, currentDirectory);
+  } else if (command === "up") {
+    navigateToDirrectory(command, currentDirectory);
   } else {
     checkCommand(command);
   }
