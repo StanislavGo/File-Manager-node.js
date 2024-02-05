@@ -27,7 +27,8 @@ const osFunctions = (command) => {
 }
 
 function eol() {
-
+  const defaulEol = os.EOL;
+  console.log(defaulEol);
 }
 
 export { osFunctions };
