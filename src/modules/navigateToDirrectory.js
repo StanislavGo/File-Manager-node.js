@@ -1,19 +1,27 @@
+import { changeCurrentPath } from "../app.js";
+import os from "os";
+
+const userHomeDirectory = os.homedir().split(/[\\/]/);
+
 const navigateToDirrectory = (pathToFile, currentDirectory) => {
   const pathWithoutCd = pathToFile.replace("cd ", "");
-  const partsOfPaht = currentDirectory.split(/[\\/]/);
-  let resultArr = [];
+  const partsOfPath = currentDirectory.split(/[\\/]/);
 
-  if (pathWithoutCd.startsWith("../")) {
-    for (let i = 0; i < partsOfPaht.length - 1; i++) {
-      resultArr.push(partsOfPaht[i]);
-    }
-
+  if (currentDirectory == userHomeDirectory[0]) {
+    changeCurrentPath(userHomeDirectory[0]);
+  } else if (pathWithoutCd.startsWith("..")) {
+    partsOfPath.pop();
     const fileToGo = pathWithoutCd.replace("../", "").split(/[\\/]/);
-    resultArr = resultArr.concat(fileToGo);
+    partsOfPath.concat(fileToGo);
+    const resultPath = partsOfPath.join("/");
+    changeCurrentPath(resultPath);
+  } else {
+    const pathToFile = pathWithoutCd.replace(".", "").replace(/[\\/]/, "").split(/[\\/]/);
+    const fullPath = partsOfPath.concat(pathToFile);
+    const resultPath = fullPath.join("/");
+    console.log(resultPath)
+    // changeCurrentPath(resultPath);
   }
-
-  const resultPath = resultArr.join("/");
-  
 };
 
 export { navigateToDirrectory };

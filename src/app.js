@@ -24,23 +24,29 @@ rl.on("SIGINT", () => {
 });
 
 const userHomeDirectory = os.homedir();
-const currentDirectory = userHomeDirectory;
+let currentDirectory = userHomeDirectory;
+
+const changeCurrentPath = (newPath) => {
+  currentDirectory = newPath;
+}
 
 const getUserHomeDirectory = () => {
-  console.log(`You are currently in: ${userHomeDirectory}`);
+  console.log(`You are currently in: ${currentDirectory}`);
 };
 
 rl.on("line", (command) => {
-  getUserHomeDirectory();
   if (command === ".exit") {
     exitFileManager();
   } else if (command === "ls") {
-    printListOffiles(userHomeDirectory);
+    printListOffiles(currentDirectory);
   } else if (command.startsWith("cd")) {
     navigateToDirrectory(command, currentDirectory);
   } else {
     checkCommand(command);
   }
+  getUserHomeDirectory();
 });
 
 getUserHomeDirectory();
+
+export { changeCurrentPath };
