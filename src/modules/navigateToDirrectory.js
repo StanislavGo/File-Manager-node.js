@@ -19,8 +19,7 @@ const navigateToDirrectory = (pathToFile, currentDirectory) => {
     const pathToFile = pathWithoutCd.replace(".", "").replace(/[\\/]/, "").split(/[\\/]/);
     const fullPath = partsOfPath.concat(pathToFile);
     const resultPath = fullPath.join("/");
-    console.log(resultPath)
-    // changeCurrentPath(resultPath);
+    changeCurrentPath(resultPath);
   }
 };
 
