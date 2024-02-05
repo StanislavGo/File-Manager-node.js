@@ -1,4 +1,4 @@
-const arrOfAllComands = [".exit", "ls", "cd"];
+const arrOfAllComands = [".exit", "ls", "cd", "os"];
 
 const checkCommand = (comand) => {
   const arrayInclues = arrOfAllComands.includes(comand);
