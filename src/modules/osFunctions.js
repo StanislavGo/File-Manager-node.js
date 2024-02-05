@@ -31,4 +31,21 @@ function eol() {
   console.log(defaulEol);
 }
 
+function cpus() {
+  const cpus = os.cpus();
+  const resultArr = [];
+
+  for(let i = 0; i < cpus.length; i++) {
+    const model = cpus[i].model;
+    const speed = cpus[i].speed;
+    const data = {
+      model: model,
+      speed: speed
+    };
+    resultArr.push(data);
+  }
+
+  console.log(resultArr);
+}
+
 export { osFunctions };
