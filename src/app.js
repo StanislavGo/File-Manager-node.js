@@ -4,6 +4,7 @@ import { createInterface } from "readline";
 import { checkCommand } from "./modules/checkCommandForExistance.js";
 import { printListOffiles } from "./modules/printListOfFilles.js";
 import { navigateToDirrectory } from "./modules/navigateToDirrectory.js";
+import { createNewFile } from "./modules/createNewFile.js";
 import os from "os";
 
 const username = getUserName();
@@ -43,6 +44,8 @@ rl.on("line", (command) => {
     navigateToDirrectory(command, currentDirectory);
   } else if (command === "up") {
     navigateToDirrectory(command, currentDirectory);
+  } else if (command.startsWith("add")) {
+    createNewFile(command)
   } else {
     checkCommand(command);
   }
