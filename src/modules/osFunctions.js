@@ -52,4 +52,14 @@ function username() {
   console.log(username);
 }
 
+function homedir() {
+  const homeDir = os.homedir();
+  console.log(homeDir);
+}
+
+function architecture() {
+  const architecture = os.arch();
+  console.log(architecture);
+}
+
 export { osFunctions };
