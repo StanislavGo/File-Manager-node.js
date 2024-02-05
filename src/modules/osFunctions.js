@@ -2,7 +2,6 @@ import os from "os";
 
 const osFunctions = (command) => {
   const commandWitoutOS = command.replace("os --", "");
-  console.log(commandWitoutOS);
 
   switch(commandWitoutOS) {
     case "EOL":
@@ -12,7 +11,7 @@ const osFunctions = (command) => {
       cpus();
       break;
     case "username":
-      cpus();
+      username();
       break;
     case "homedir":
       homedir();
@@ -46,6 +45,11 @@ function cpus() {
   }
 
   console.log(resultArr);
+}
+
+function username() {
+  const username = os.hostname();
+  console.log(username);
 }
 
 export { osFunctions };
